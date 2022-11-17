@@ -6,27 +6,22 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 @app.route('/p2')
-def home():
+def p2home():
    return render_template('p2.html')
 
 @app.route("/p2_comment", methods=["POST"])
 def comment_post():
     comment_receive = request.form['comment_give']
-   
-    doc = {
+    doca = {
         'comment': comment_receive,
-        
     }
-    db.comment.insert_one(doc)
-
+    db.p2_comment.insert_one(doca)
     return jsonify({'msg':'입력 완료!'})
 
 @app.route("/p2_comment", methods=["GET"])
 def comment_get():
-    comment_list = list(db.comment.find({}, {'_id': False}))
-
+    comment_list = list(db.p2_comment.find({}, {'_id': False}))
     return jsonify({'comment':comment_list})
-
 
 if __name__ == '__main__':
    app.run('0.0.0.0',port=5000,debug=True)
