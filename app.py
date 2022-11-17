@@ -5,7 +5,7 @@ db = client.p2
 from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
-@app.route('/p2')
+@app.route('/individual/p2')
 def p2home():
    return render_template('p2.html')
 
